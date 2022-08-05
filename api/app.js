@@ -8,7 +8,14 @@ const fastify = Fastify();
 fastify.register(require('@fastify/cors'));
 fastify.register(require('@fastify/sensible'));
 
-fastify.register(require('./routes/main'));
+fastify.register(require('./plugins/state'));
+fastify.register(require('./plugins/auth'));
+fastify.register(require('./plugins/error'));
+
+fastify.after(function () {
+    fastify.register(require('./routes/auth'));
+    fastify.register(require('./routes/main'));
+});
 
 fastify.listen({ port, host }, (err, addr) => {
     if (err) {
