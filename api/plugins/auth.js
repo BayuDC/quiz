@@ -4,10 +4,15 @@ const prisma = require('../db');
 
 module.exports = fp(function (fastify, options, done) {
     fastify
-        .decorate('verifyJWT', function (req, reply, done) {
-            throw fastify.httpErrors.unauthorized();
+        .decorate('verifyJWT', async function (req) {
+            const token = req.cookies.token;
 
-            done();
+            try {
+                const payload = fastify.jwt.verify(token);
+                req.state.user = payload;
+            } catch {
+                throw fastify.httpErrors.unauthorized();
+            }
         })
         .decorate('verifyCredentials', async function (req) {
             const { username, password } = req.body;
