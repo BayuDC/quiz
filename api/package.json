@@ -1,0 +1,21 @@
+{
+  "name": "quiz-api",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "dev": "node -r dotenv/config app"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/BayuDC/quiz.git",
+  "author": "BayuDC",
+  "dependencies": {
+    "fastify": "^4.3.0",
+    "@fastify/cors": "^8.1.0",
+    "@fastify/sensible": "^5.1.0",
+    "fastify-plugin": "^4.0.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.1"
+  }
+}
