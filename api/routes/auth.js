@@ -8,8 +8,10 @@ const handler = require('../handlers/auth');
 module.exports = function (fastify, options, done) {
     fastify.get('/auth', {
         preHandler: fastify.auth([fastify.verifyJWT]),
-        handler: (_, reply) => {
-            reply.send();
+        handler: (req, reply) => {
+            const user = req.state.user;
+
+            reply.send({ user });
         },
     });
     fastify.post('/auth/login', {
