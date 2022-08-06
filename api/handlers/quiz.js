@@ -160,5 +160,23 @@ module.exports = {
      * @param {import('fastify').FastifyRequest} req
      * @param {import('fastify').FastifyReply} reply
      */
-    async result(req, reply) {},
+    async result(req, reply) {
+        const { user } = req.state;
+        const userId = (await prisma.user.findUnique({ where: { username: user.username } })).id;
+        const score = await prisma.score.findFirst({
+            where: { userId },
+        });
+        const totalQuestion = await prisma.question.count();
+        const correctAnswer = await prisma.answer.count({ where: { correct: true, userId } });
+
+        if (!score) {
+            return reply.notFound('Please finish the quiz first!');
+        }
+
+        reply.send({
+            score: score.value,
+            totalQuestion,
+            correctAnswer,
+        });
+    },
 };
