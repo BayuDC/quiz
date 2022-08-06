@@ -35,7 +35,7 @@ model Question {
 model Choice {
   id         Int     @id @default(autoincrement())
   body       String
-  correct    Boolean
+  correct    Boolean @default(false)
   questionId Int     @map("question_id")
 
   question Question @relation(fields: [questionId], references: [id])
