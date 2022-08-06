@@ -7,9 +7,7 @@ const handler = require('../handlers/quiz');
 module.exports = function (fastify, options, done) {
     fastify.addHook('preHandler', fastify.auth([fastify.verifyJWT]));
     fastify.get('/quiz', {
-        handler: (req, reply) => {
-            reply.send();
-        },
+        handler: handler.index,
     });
     fastify.post('/quiz/start', {
         handler: handler.start,
