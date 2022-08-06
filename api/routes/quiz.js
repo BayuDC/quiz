@@ -10,6 +10,7 @@ module.exports = function (fastify, options, done) {
         handler: handler.index,
     });
     fastify.post('/quiz', {
+        schema: { body: { type: 'object', required: ['answer'], properties: { answer: { type: 'number' } } } },
         handler: handler.answer,
     });
     fastify.post('/quiz/start', {

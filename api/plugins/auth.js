@@ -20,10 +20,10 @@ module.exports = fp(function (fastify, options, done) {
             const user = await prisma.user.findUnique({
                 where: { username: username || '' },
             });
-            if (!user) fastify.httpErrors.notFound('User not found');
+            if (!user) return fastify.httpErrors.notFound('User not found');
 
             const auth = await bcrypt.compare(password || '', user.password);
-            if (!auth) fastify.httpErrors.unauthorized('Incorrect password');
+            if (!auth) return fastify.httpErrors.unauthorized('Incorrect password');
 
             const token = fastify.jwt.sign({
                 fullname: user.fullname,

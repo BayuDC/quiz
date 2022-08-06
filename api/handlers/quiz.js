@@ -14,6 +14,9 @@ module.exports = {
 
         const cursor = await this.redis.get(`${user.username}:cursor`);
         const questionId = await this.redis.lindex(`${user.username}:questions`, cursor);
+        const questionCount = await this.redis.llen(`${user.username}:questions`);
+
+        if (cursor == questionCount) return reply.gone('All questions answered');
         const question = await prisma.question.findUnique({
             select: { id: true, body: true, choices: { select: { id: true, body: true } } },
             where: { id: parseInt(questionId) },
