@@ -7,9 +7,13 @@ module.exports = {
      */
     async index(req, reply) {
         const { user } = req.state;
+        const status = await this.redis.get(`${user.username}:status`);
 
-        if (!(await this.redis.get(`${user.username}:working`))) {
+        if (status != 'started') {
             return reply.tooEarly("Quiz hasn't started yet");
+        }
+        if (status == 'finished') {
+            return reply.gone('Quiz already finished');
         }
 
         const cursor = await this.redis.get(`${user.username}:cursor`);
@@ -33,15 +37,19 @@ module.exports = {
     async answer(req, reply) {
         const { user } = req.state;
         const { answer: answerId } = req.body;
+        const status = await this.redis.get(`${user.username}:status`);
 
-        if (!(await this.redis.get(`${user.username}:working`))) {
+        if (status != 'started') {
             return reply.tooEarly("Quiz hasn't started yet");
+        }
+        if (status == 'finished') {
+            return reply.gone('Quiz already finished');
         }
 
         const cursor = await this.redis.get(`${user.username}:cursor`);
         const questionId = await this.redis.lindex(`${user.username}:questions`, cursor);
         const exist = await prisma.choice.findFirst({
-            where: { id: answerId, questionId: parseInt(questionId) },
+            where: { id: answerId, questionId: parseInt(questionId) || 0 },
         });
 
         if (!exist) return reply.notAcceptable('Ilegal answer');
@@ -57,9 +65,13 @@ module.exports = {
      */
     async start(req, reply) {
         const { user } = req.state;
+        const status = await this.redis.get(`${user.username}:status`);
 
-        if (await this.redis.get(`${user.username}:working`)) {
+        if (status == 'started') {
             return reply.badRequest('Quiz already started');
+        }
+        if (status == 'finished') {
+            return reply.gone('Quiz already finished');
         }
 
         const questions = await prisma.question.findMany({ select: { id: true } });
@@ -75,7 +87,7 @@ module.exports = {
             questions[index] = temp;
         }
 
-        await this.redis.set(`${user.username}:working`, 1);
+        await this.redis.set(`${user.username}:status`, 'started');
         await this.redis.set(`${user.username}:cursor`, 0);
         await this.redis.rpush(
             `${user.username}:questions`,
@@ -90,5 +102,26 @@ module.exports = {
      * @param {import('fastify').FastifyRequest} req
      * @param {import('fastify').FastifyReply} reply
      */
-    finish(req, reply) {},
+    async finish(req, reply) {
+        const { user } = req.state;
+        const status = await this.redis.get(`${user.username}:status`);
+
+        if (status != 'started') {
+            return reply.tooEarly("Quiz hasn't started yet");
+        }
+        if (status == 'finished') {
+            return reply.gone('Quiz already finished');
+        }
+
+        const questionCount = await this.redis.llen(`${user.username}:questions`);
+        const answerCount = await this.redis.llen(`${user.username}:answers`);
+        if (questionCount != answerCount) {
+            return reply.tooEarly('Please answer all questions first!');
+        }
+
+        // TODO set status to finished
+        // TODO calculate the score
+        // TODO save answer and score
+        // TODO done
+    },
 };
