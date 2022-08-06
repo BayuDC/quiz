@@ -59,9 +59,9 @@ model Answer {
 }
 
 model Score {
-  id     Int @id @default(autoincrement())
-  value  Int
-  userId Int @unique @map("user_id")
+  id     Int   @id @default(autoincrement())
+  value  Float
+  userId Int   @unique @map("user_id")
 
   user User @relation(fields: [userId], references: [id])
 

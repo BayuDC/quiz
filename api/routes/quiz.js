@@ -17,9 +17,10 @@ module.exports = function (fastify, options, done) {
         handler: handler.start,
     });
     fastify.post('/quiz/finish', {
-        handler: (req, reply) => {
-            reply.send();
-        },
+        handler: handler.finish,
+    });
+    fastify.post('/quiz/result', {
+        handler: handler.result,
     });
 
     done();

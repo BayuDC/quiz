@@ -112,22 +112,53 @@ module.exports = {
         const { user } = req.state;
         const status = await this.redis.get(`${user.username}:status`);
 
-        if (status != 'started') {
+        if (!status) {
             return reply.tooEarly("Quiz hasn't started yet");
         }
         if (status == 'finished') {
             return reply.gone('Quiz already finished');
         }
 
-        const questionCount = await this.redis.llen(`${user.username}:questions`);
-        const answerCount = await this.redis.llen(`${user.username}:answers`);
-        if (questionCount != answerCount) {
+        const userId = (await prisma.user.findUnique({ where: { username: user.username } })).id;
+        const questionCount = await prisma.question.count();
+        const userQuestions = await this.redis.lrange(`${user.username}:questions`, 0, questionCount - 1);
+        const userAnswers = await this.redis.lrange(`${user.username}:answers`, 0, questionCount - 1);
+        if (questionCount != userAnswers.length) {
             return reply.tooEarly('Please answer all questions first!');
         }
 
-        // TODO set status to finished
-        // TODO calculate the score
-        // TODO save answer and score
-        // TODO done
+        let correct = 0;
+        for (let i = 0; i < questionCount; i++) {
+            const question = await prisma.question.findUnique({
+                where: { id: parseInt(userQuestions[i]) },
+            });
+            const choice = await prisma.choice.findUnique({
+                where: { id: parseInt(userAnswers[i]) },
+            });
+
+            correct += choice.correct;
+            await prisma.answer.create({
+                data: {
+                    userId,
+                    questionId: question.id,
+                    choiceId: choice.id,
+                    correct: choice.correct,
+                },
+            });
+        }
+        const score = (correct / questionCount) * 100;
+        await prisma.score.create({
+            data: { userId, value: score },
+        });
+        await this.redis.set(`${user.username}:status`, 'finished');
+
+        reply.send({
+            message: 'Quiz finished',
+        });
     },
+    /**
+     * @param {import('fastify').FastifyRequest} req
+     * @param {import('fastify').FastifyReply} reply
+     */
+    async result(req, reply) {},
 };
