@@ -17,6 +17,7 @@
     "@fastify/cookie": "^7.3.1",
     "@fastify/cors": "^8.1.0",
     "@fastify/jwt": "^6.3.2",
+    "@fastify/redis": "^6.0.0",
     "@fastify/sensible": "^5.1.0",
     "@prisma/client": "^4.1.1",
     "bcryptjs": "^2.4.3",

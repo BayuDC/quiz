@@ -5,6 +5,7 @@ specifiers:
   '@fastify/cookie': ^7.3.1
   '@fastify/cors': ^8.1.0
   '@fastify/jwt': ^6.3.2
+  '@fastify/redis': ^6.0.0
   '@fastify/sensible': ^5.1.0
   '@prisma/client': ^4.1.1
   bcryptjs: ^2.4.3
@@ -18,6 +19,7 @@ dependencies:
   '@fastify/cookie': 7.3.1
   '@fastify/cors': 8.1.0
   '@fastify/jwt': 6.3.2
+  '@fastify/redis': 6.0.0
   '@fastify/sensible': 5.1.0
   '@prisma/client': 4.1.1_prisma@4.1.1
   bcryptjs: 2.4.3
@@ -84,6 +86,15 @@ packages:
       steed: 1.1.3
     dev: false
 
+  /@fastify/redis/6.0.0:
+    resolution: {integrity: sha512-IiZjXph1mGTkPkcMO5gqZFgW7e4KNN6HNcrQZk4UWMOb3s0vFPZsHEkbfdBU5v/d/wmRH4w1Q9NIJH9NwFSm9Q==}
+    dependencies:
+      fastify-plugin: 3.0.1
+      ioredis: 5.2.2
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /@fastify/sensible/5.1.0:
     resolution: {integrity: sha512-ZLuYDpBZecCsr5ZlTKtcyA1dg9ExiEHdTxarYMaBnCJzPBUvTNoDMypMCC6XcC1VS7idMmKjlGmHfmMAaz761Q==}
     dependencies:
@@ -94,6 +105,10 @@ packages:
       ms: 2.1.3
       type-is: 1.6.18
       vary: 1.1.2
+    dev: false
+
+  /@ioredis/commands/1.2.0:
+    resolution: {integrity: sha512-Sx1pU8EM64o2BrqNpEO1CNLtKQwyhuXuqyfH7oGKCk+1a33d2r5saW8zNwm3j6BTExtjrv2BxTgzzkMwts6vGg==}
     dev: false
 
   /@lukeed/ms/2.0.0:
@@ -188,6 +203,11 @@ packages:
     resolution: {integrity: sha512-c98Bf3tPniI+scsdk237ku1Dc3ujXQTSgyiPUDEOe7tRkhrqridvh8klBv0HCEso1OLOYcHuCv/cS6DNxKH+ZA==}
     dev: false
 
+  /cluster-key-slot/1.1.0:
+    resolution: {integrity: sha512-2Nii8p3RwAPiFwsnZvukotvow2rIHM+yQ6ZcBXGHdniadkYGZYiGmkHJIbZPIV9nfv7m/U1IPMVVcAhoWFeklw==}
+    engines: {node: '>=0.10.0'}
+    dev: false
+
   /cookie-signature/1.2.0:
     resolution: {integrity: sha512-R0BOPfLGTitaKhgKROKZQN6iyq2iDQcH1DOF8nJoaWapguX5bC2w+Q/I9NmmM5lfcvEarnLZr+cCvmEYYSXvYA==}
     engines: {node: '>=6.6.0'}
@@ -208,6 +228,11 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
+    dev: false
+
+  /denque/2.1.0:
+    resolution: {integrity: sha512-HVQE3AAb/pxF8fQAoiqpvg9i3evqug3hoiwakOyZAwJm+6vZehbkYXZ0l4JxS+I3QxM97v5aaRNhj8v5oBhekw==}
+    engines: {node: '>=0.10'}
     dev: false
 
   /depd/2.0.0:
@@ -347,6 +372,23 @@ packages:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
     dev: false
 
+  /ioredis/5.2.2:
+    resolution: {integrity: sha512-wryKc1ur8PcCmNwfcGkw5evouzpbDXxxkMkzPK8wl4xQfQf7lHe11Jotell5ikMVAtikXJEu/OJVaoV51BggRQ==}
+    engines: {node: '>=12.22.0'}
+    dependencies:
+      '@ioredis/commands': 1.2.0
+      cluster-key-slot: 1.1.0
+      debug: 4.3.4
+      denque: 2.1.0
+      lodash.defaults: 4.2.0
+      lodash.isarguments: 3.1.0
+      redis-errors: 1.2.0
+      redis-parser: 3.0.0
+      standard-as-callback: 2.1.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /ipaddr.js/1.9.1:
     resolution: {integrity: sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==}
     engines: {node: '>= 0.10'}
@@ -362,6 +404,14 @@ packages:
       cookie: 0.5.0
       process-warning: 2.0.0
       set-cookie-parser: 2.5.1
+    dev: false
+
+  /lodash.defaults/4.2.0:
+    resolution: {integrity: sha512-qjxPLHd3r5DnsdGacqOMU6pb/avJzdh9tFX2ymgoZE27BmjXrNy/y4LoaiTeAb+O3gL8AfpJGtqfX/ae2leYYQ==}
+    dev: false
+
+  /lodash.isarguments/3.1.0:
+    resolution: {integrity: sha512-chi4NHZlZqZD18a0imDHnZPrDeBbTtVN7GXMwuGdRH9qotxAjYs3aVLKc7zNOG9eddR5Ksd8rvFEBc9SsggPpg==}
     dev: false
 
   /lru-cache/6.0.0:
@@ -483,6 +533,18 @@ packages:
     engines: {node: '>= 12.13.0'}
     dev: false
 
+  /redis-errors/1.2.0:
+    resolution: {integrity: sha512-1qny3OExCf0UvUV/5wpYKf2YwPcOqXzkwKKSmKHiE6ZMQs5heeE/c8eXK+PNllPvmjgAbfnsbpkGZWy8cBpn9w==}
+    engines: {node: '>=4'}
+    dev: false
+
+  /redis-parser/3.0.0:
+    resolution: {integrity: sha512-DJnGAeenTdpMEH6uAJRK/uiyEIH9WVsUmoLwzudwGJUwZPp80PDBWPHXSAGNPwNvIXAbe7MSUB1zQFugFml66A==}
+    engines: {node: '>=4'}
+    dependencies:
+      redis-errors: 1.2.0
+    dev: false
+
   /require-from-string/2.0.2:
     resolution: {integrity: sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==}
     engines: {node: '>=0.10.0'}
@@ -550,6 +612,10 @@ packages:
   /split2/4.1.0:
     resolution: {integrity: sha512-VBiJxFkxiXRlUIeyMQi8s4hgvKCSjtknJv/LVYbrgALPwf5zSKmEwV9Lst25AkvMDnvxODugjdl6KZgwKM1WYQ==}
     engines: {node: '>= 10.x'}
+    dev: false
+
+  /standard-as-callback/2.1.0:
+    resolution: {integrity: sha512-qoRRSyROncaz1z0mvYqIE4lCd9p2R90i6GxW3uZv5ucSu8tU7B5HXUP1gG8pVZsYNVaXjk8ClXHPttLyxAL48A==}
     dev: false
 
   /statuses/2.0.1:

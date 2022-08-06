@@ -4,7 +4,7 @@ module.exports = {
      * @param {import('fastify').FastifyReply} reply
      */
     login(req, reply) {
-        reply.setCookie('token', req.state.token);
+        reply.setCookie('token', req.state.token, { path: '/' });
         reply.send({
             message: 'Login success',
         });
@@ -14,7 +14,7 @@ module.exports = {
      * @param {import('fastify').FastifyReply} reply
      */
     logout(req, reply) {
-        reply.clearCookie('token', { path: '/auth' });
+        reply.clearCookie('token', { path: '/' });
         reply.send({
             message: 'Logout success',
         });
