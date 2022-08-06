@@ -9,6 +9,9 @@ module.exports = function (fastify, options, done) {
     fastify.get('/quiz', {
         handler: handler.index,
     });
+    fastify.post('/quiz', {
+        handler: handler.answer,
+    });
     fastify.post('/quiz/start', {
         handler: handler.start,
     });

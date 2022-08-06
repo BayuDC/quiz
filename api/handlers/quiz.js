@@ -9,14 +9,14 @@ module.exports = {
         const { user } = req.state;
 
         if (!(await this.redis.get(`${user.username}:working`))) {
-            reply.tooEarly("Quiz hasn't started yet");
+            return reply.tooEarly("Quiz hasn't started yet");
         }
 
         const cursor = await this.redis.get(`${user.username}:cursor`);
-        const id = await this.redis.lindex(`${user.username}:questions`, cursor);
+        const questionId = await this.redis.lindex(`${user.username}:questions`, cursor);
         const question = await prisma.question.findUnique({
             select: { id: true, body: true, choices: { select: { id: true, body: true } } },
-            where: { id: parseInt(id) },
+            where: { id: parseInt(questionId) },
         });
 
         reply.send({
@@ -27,7 +27,27 @@ module.exports = {
      * @param {import('fastify').FastifyRequest} req
      * @param {import('fastify').FastifyReply} reply
      */
-    async answer(req, reply) {},
+    async answer(req, reply) {
+        const { user } = req.state;
+        const { answer: answerId } = req.body;
+
+        if (!(await this.redis.get(`${user.username}:working`))) {
+            return reply.tooEarly("Quiz hasn't started yet");
+        }
+
+        const cursor = await this.redis.get(`${user.username}:cursor`);
+        const questionId = await this.redis.lindex(`${user.username}:questions`, cursor);
+        const exist = await prisma.choice.findFirst({
+            where: { id: answerId, questionId: parseInt(questionId) },
+        });
+
+        if (!exist) return reply.notAcceptable('Ilegal answer');
+
+        await this.redis.incr(`${user.username}:cursor`);
+        await this.redis.rpush(`${user.username}:answers`, answerId);
+
+        reply.code(204).send();
+    },
     /**
      * @param {import('fastify').FastifyRequest} req
      * @param {import('fastify').FastifyReply} reply
@@ -36,7 +56,7 @@ module.exports = {
         const { user } = req.state;
 
         if (await this.redis.get(`${user.username}:working`)) {
-            reply.badRequest('Quiz already started');
+            return reply.badRequest('Quiz already started');
         }
 
         const questions = await prisma.question.findMany({ select: { id: true } });
