@@ -1,5 +1,20 @@
 const prisma = require('../db');
 
+function shuffle(array) {
+    let temp;
+    let index;
+    let cursor = array.length;
+
+    while (cursor) {
+        index = Math.floor(Math.random() * cursor--);
+        temp = array[cursor];
+        array[cursor] = array[index];
+        array[index] = temp;
+    }
+
+    return array;
+}
+
 module.exports = {
     /**
      * @param {import('fastify').FastifyRequest} req
@@ -25,6 +40,8 @@ module.exports = {
             select: { id: true, body: true, choices: { select: { id: true, body: true } } },
             where: { id: parseInt(questionId) },
         });
+
+        shuffle(question.choices);
 
         reply.send({
             question,
@@ -74,18 +91,7 @@ module.exports = {
             return reply.gone('Quiz already finished');
         }
 
-        const questions = await prisma.question.findMany({ select: { id: true } });
-
-        let temp;
-        let index;
-        let cursor = questions.length;
-
-        while (cursor) {
-            index = Math.floor(Math.random() * cursor--);
-            temp = questions[cursor];
-            questions[cursor] = questions[index];
-            questions[index] = temp;
-        }
+        const questions = shuffle(await prisma.question.findMany({ select: { id: true } }));
 
         await this.redis.set(`${user.username}:status`, 'started');
         await this.redis.set(`${user.username}:cursor`, 0);
