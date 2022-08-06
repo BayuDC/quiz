@@ -1,3 +1,4 @@
+const handler = require('../handlers/quiz');
 /**
  * @param {import('fastify').FastifyInstance} fastify
  * @param {import('fastify').FastifyPluginOptions} options
@@ -11,9 +12,7 @@ module.exports = function (fastify, options, done) {
         },
     });
     fastify.post('/quiz/start', {
-        handler: (req, reply) => {
-            reply.send();
-        },
+        handler: handler.start,
     });
     fastify.post('/quiz/finish', {
         handler: (req, reply) => {
