@@ -3,11 +3,15 @@ const Fastify = require('fastify');
 const port = process.env.APP_PORT || 8080;
 const host = process.env.APP_HOST || '127.0.0.1';
 const secret = process.env.APP_SECRET;
+const origin = process.env.APP_ORIGIN;
 const redisUrl = process.env.REDIS_URL;
 
 const fastify = Fastify();
 
-fastify.register(require('@fastify/cors'));
+fastify.register(require('@fastify/cors'), {
+    origin,
+    credentials: true,
+});
 fastify.register(require('@fastify/cookie'));
 fastify.register(require('@fastify/sensible'));
 fastify.register(require('@fastify/jwt'), { secret });
