@@ -1,23 +1,26 @@
 <script>
     import axios from '../lib/axios';
+    import { navigate } from 'svelte-navigator';
     import LayoutCard from '../layouts/Card.svelte';
 
     import Input from '../shared/Input.svelte';
+    import Alert from '../shared/Alert.svelte';
     import Button from '../shared/Button.svelte';
 
     let loading = false;
+    let error = '';
 
     const handleSubmit = async e => {
         try {
             loading = true;
-            const response = await axios.post('/auth/login', {
+            await axios.post('/auth/login', {
                 username: e.target['txt-username'].value,
                 password: e.target['txt-password'].value,
             });
 
-            console.log(response);
+            navigate('/', { replace: true });
         } catch (err) {
-            console.log(err);
+            error = err.response.data.message || 'Something went wrong';
         } finally {
             loading = false;
         }
@@ -28,7 +31,9 @@
     <form on:submit|preventDefault={handleSubmit} disabled>
         <Input label="Username" name="txt-username" required />
         <Input label="Password" name="txt-password" required type="password" />
-
+        {#if error}
+            <Alert>{error}</Alert>
+        {/if}
         <Button>Login</Button>
     </form>
 </LayoutCard>

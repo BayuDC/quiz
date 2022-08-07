@@ -37,8 +37,11 @@
             }
 
             & :global(button) {
-                margin-top: 25px;
+                margin-top: 20px;
                 margin-left: auto;
+            }
+            & :global(.alert) {
+                margin-top: 20px;
             }
         }
 
