@@ -1,3 +1,10 @@
+<script>
+    import Container from './components/Container.svelte';
+    import Login from './components/Login.svelte';
+</script>
+
 <main>
-    <h1>Hello World</h1>
+    <Container>
+        <Login />
+    </Container>
 </main>

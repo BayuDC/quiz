@@ -22,4 +22,12 @@ ul {
 button,
 input {
     display: block;
+    font-family: 'Lexend', sans-serif;
+}
+
+hr {
+    margin: 10px 0;
+    height: 2px;
+    border: none;
+    background: rgba($black, 0.3);
 }
