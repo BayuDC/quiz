@@ -1,6 +1,9 @@
 <script>
-    import axios from '../lib/axios';
+    import { onDestroy } from 'svelte';
     import { navigate } from 'svelte-navigator';
+    import { auth } from '../store';
+    import axios from '../lib/axios';
+
     import LayoutCard from '../layouts/Card.svelte';
 
     import Input from '../shared/Input.svelte';
@@ -25,6 +28,12 @@
             loading = false;
         }
     };
+
+    onDestroy(
+        auth.subscribe(value => {
+            if (value.user) navigate('/', { replace: true });
+        })
+    );
 </script>
 
 <LayoutCard {loading}>
