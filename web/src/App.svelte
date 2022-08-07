@@ -1,10 +1,11 @@
 <script>
     import Container from './components/Container.svelte';
-    import Login from './components/Login.svelte';
+    import Login from './pages/Login.svelte';
+    import Root from './pages/Root.svelte';
 </script>
 
 <main>
     <Container>
-        <Login />
+        <Root />
     </Container>
 </main>

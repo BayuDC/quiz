@@ -1,34 +1,21 @@
-<script>
-    import Input from '../shared/Input.svelte';
-    import Button from '../shared/Button.svelte';
-
-    const handleSubmit = () => {
-        console.log('Hello');
-    };
-</script>
-
-<div class="login">
-    <form on:submit|preventDefault={handleSubmit}>
+<div class="layout-card">
+    <div class="wrapper">
         <h1>TheQuiz</h1>
         <hr />
-
-        <Input label="Username" name="txt-username" required />
-        <Input label="Password" name="txt-password" required type="password" />
-
-        <Button>Login</Button>
-    </form>
+        <slot />
+    </div>
 </div>
 
 <style lang="scss">
-    @import '../styles/mixin';
     @import '../styles/variable';
 
-    .login {
+    .layout-card {
         min-height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
-        form {
+
+        .wrapper {
             background: #fff;
             padding: 20px;
             width: 100%;
@@ -40,14 +27,14 @@
                 text-align: center;
             }
 
+            hr {
+                margin-bottom: 20px;
+            }
+
             & :global(button) {
                 margin-top: 25px;
                 margin-left: auto;
             }
-        }
-
-        hr {
-            margin-bottom: 20px;
         }
     }
 </style>
