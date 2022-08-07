@@ -21,6 +21,7 @@
                 password: e.target['txt-password'].value,
             });
 
+            auth.load();
             navigate('/', { replace: true });
         } catch (err) {
             error = err.response.data.message || 'Something went wrong';
