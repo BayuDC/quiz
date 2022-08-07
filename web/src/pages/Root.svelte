@@ -1,13 +1,15 @@
 <script>
     import Guard from '../components/Guard.svelte';
-    import LayoutMain from '../layouts/Main.svelte';
+    import Quiz from '../components/Quiz.svelte';
+    import QuizStart from '../components/QuizStart.svelte';
 
-    import Radio from '../shared/Radio.svelte';
+    let started = false;
 </script>
 
-<LayoutMain>
-    <Guard>
-        <Radio name="test" id="A" value="1">Lorem ipsum</Radio>
-        <Radio name="test" id="B" value="2">Lorem, ipsum dolor.</Radio>
-    </Guard>
-</LayoutMain>
+<Guard>
+    {#if started}
+        <Quiz />
+    {:else}
+        <QuizStart on:started={() => (started = true)} />
+    {/if}
+</Guard>
