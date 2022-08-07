@@ -1,4 +1,8 @@
-<div class="layout-card">
+<script>
+    export let loading = false;
+</script>
+
+<div class="layout-card" class:loading>
     <div class="wrapper">
         <h1>TheQuiz</h1>
         <hr />
@@ -20,6 +24,7 @@
             padding: 20px;
             width: 100%;
             max-width: 360px;
+            position: relative;
 
             h1 {
                 font-size: 28px;
@@ -34,6 +39,39 @@
             & :global(button) {
                 margin-top: 25px;
                 margin-left: auto;
+            }
+        }
+
+        &.loading {
+            .wrapper::before {
+                content: 'Loading...';
+                background: rgba(#fff, 0.6);
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+                font-weight: 700;
+                animation: 0.9s loading infinite;
+
+                @keyframes loading {
+                    0% {
+                        content: 'Loading';
+                    }
+                    33% {
+                        content: 'Loading.';
+                    }
+                    66% {
+                        content: 'Loading..';
+                    }
+                    100% {
+                        content: 'Loading...';
+                    }
+                }
             }
         }
     }

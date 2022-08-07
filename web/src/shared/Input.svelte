@@ -7,7 +7,7 @@
 
 <div class="input-field">
     <label for={name}>{label}</label>
-    <input id={name} {name} {type} {required} autocomplete="off" />
+    <input on:input id={name} {name} {type} {required} autocomplete="off" />
 </div>
 
 <style lang="scss">
