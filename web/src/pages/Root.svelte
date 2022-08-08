@@ -5,6 +5,7 @@
     import Guard from '../components/Guard.svelte';
     import Quiz from '../components/Quiz.svelte';
     import QuizStart from '../components/QuizStart.svelte';
+    import QuizFinish from '../components/QuizFinish.svelte';
 
     let pending = true;
     let started = false;
@@ -35,6 +36,8 @@
     {#if !pending}
         {#if started}
             <Quiz {question} on:next={fetchQuiz} />
+        {:else if finished}
+            <QuizFinish />
         {:else}
             <QuizStart on:started={() => (started = true)} />
         {/if}

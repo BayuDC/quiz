@@ -1,5 +1,6 @@
 <script>
-    import { createEventDispatcher } from 'svelte';
+    import { navigate } from 'svelte-navigator';
+
     import axios from '../lib/axios';
     import quiz from '../data/quiz.json';
 
@@ -9,25 +10,25 @@
 
     let error = '';
 
-    const dispatch = createEventDispatcher();
-    const handleSubmit = async e => {
+    const handleSubmit = async () => {
         try {
-            await axios.post('/quiz/start');
-            dispatch('started');
+            await axios.post('/quiz/finish');
+            navigate('/result');
         } catch (err) {
+            if (err.response.status == 410) return navigate('/result');
             error = err.response.data.message || 'Something went wrong';
         }
     };
 </script>
 
 <LayoutCard>
-    <form on:submit|preventDefault={handleSubmit}>
+    <form action="" on:submit|preventDefault={handleSubmit}>
         <h4>{quiz.name}</h4>
         <p><b>{quiz.count}</b> Questions</p>
         {#if error}
             <Alert>{error}</Alert>
         {/if}
-        <Button>Start the Quiz</Button>
+        <Button>See Quiz Result</Button>
     </form>
 </LayoutCard>
 
