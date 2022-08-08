@@ -34,7 +34,7 @@
 <Guard>
     {#if !pending}
         {#if started}
-            <Quiz {question} />
+            <Quiz {question} on:next={fetchQuiz} />
         {:else}
             <QuizStart on:started={() => (started = true)} />
         {/if}
