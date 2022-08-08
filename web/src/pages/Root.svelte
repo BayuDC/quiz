@@ -11,7 +11,7 @@
     let finished = false;
     let question;
 
-    onMount(async () => {
+    const fetchQuiz = async () => {
         pending = true;
         try {
             const { data } = await axios.get('/quiz');
@@ -22,7 +22,13 @@
             if (err.response.status == 410) finished = true;
         }
         pending = false;
-    });
+    };
+
+    onMount(fetchQuiz);
+
+    $: {
+        if (started) fetchQuiz();
+    }
 </script>
 
 <Guard>
