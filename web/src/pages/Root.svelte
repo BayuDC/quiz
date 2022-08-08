@@ -20,7 +20,10 @@
             started = true;
         } catch (err) {
             if (err.response.status == 425) started = false;
-            if (err.response.status == 410) finished = true;
+            if (err.response.status == 410) {
+                started = false;
+                finished = true;
+            }
         }
         pending = false;
     };

@@ -24,11 +24,11 @@ module.exports = {
         const { user } = req.state;
         const status = await this.redis.get(`${user.username}:status`);
 
-        if (status != 'started') {
-            return reply.tooEarly("Quiz hasn't started yet");
-        }
         if (status == 'finished') {
             return reply.gone('Quiz already finished');
+        }
+        if (status != 'started') {
+            return reply.tooEarly("Quiz hasn't started yet");
         }
 
         const cursor = await this.redis.get(`${user.username}:cursor`);
