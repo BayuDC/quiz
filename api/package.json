@@ -5,9 +5,9 @@
   "scripts": {
     "start": "node app",
     "dev": "node -r dotenv/config app",
-    "db": "npm run db:push && npm run db:seed",
-    "db:push": "prisma db push --force-reset",
-    "db:seed": "prisma db seed"
+    "db:push": "prisma db push",
+    "db:seed": "prisma db seed",
+    "db:flush": "prisma db push --force-reset && prisma db seed"
   },
   "license": "MIT",
   "repository": "https://github.com/BayuDC/quiz.git",

@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  db_sql:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=bayudc
+      - POSTGRES_PASSWORD=bay
+      - POSTGRES_DB=quiz
+    volumes:
+      - data:/var/lib/postgres
+  db_redis:
+    image: redis:latest
+    volumes:
+      - data:/var/lib/redis
+  app:
+    image: bayudc/quiz_app
+    depends_on:
+      - db_sql
+      - db_redis
+    build: .
+    env_file:
+      - ./api/.env
+    environment:
+      - REDIS_URL=redis://db_redis:6379
+      - DATABASE_URL=postgresql://bayudc:bay@db_sql:5432/quiz?schema=public
+    ports:
+      - 80:80
+
+
+volumes:
+  data:
