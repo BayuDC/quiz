@@ -1,6 +1,6 @@
 <script>
     import { onMount } from 'svelte';
-    import { auth } from '../store';
+    import { auth } from '../lib/store';
 
     let render = false;
 

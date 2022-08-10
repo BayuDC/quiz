@@ -1,6 +1,7 @@
 <script>
     import { createEventDispatcher } from 'svelte';
     import LayoutMain from '../layouts/Main.svelte';
+    import { loading } from '../lib/store';
     import axios from '../lib/axios';
 
     import Radio from '../shared/Radio.svelte';
@@ -11,6 +12,7 @@
     const dispatch = createEventDispatcher();
 
     const handleSubmit = async e => {
+        loading.set(true);
         try {
             await axios.post('/quiz', {
                 answer: e.target['answer'].value,
@@ -18,6 +20,7 @@
         } finally {
             dispatch('next');
         }
+        loading.set(false);
     };
 </script>
 

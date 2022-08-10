@@ -1,6 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     import { navigate } from 'svelte-navigator';
+    import { loading } from '../lib/store';
     import axios from '../lib/axios';
     import quiz from '../data/quiz.json';
     import LayoutMain from '../layouts/Main.svelte';
@@ -9,12 +10,14 @@
     let result;
 
     onMount(async () => {
+        loading.set(true);
         try {
             const { data } = await axios.get('/quiz/result');
             result = data;
         } catch {
             navigate('/');
         }
+        loading.set(false);
     });
 </script>
 

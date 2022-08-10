@@ -1,6 +1,7 @@
 <script>
     import { createEventDispatcher } from 'svelte';
     import axios from '../lib/axios';
+    import { loading } from '../lib/store';
     import quiz from '../data/quiz.json';
 
     import LayoutCard from '../layouts/Card.svelte';
@@ -11,12 +12,14 @@
 
     const dispatch = createEventDispatcher();
     const handleSubmit = async e => {
+        loading.set(true);
         try {
             await axios.post('/quiz/start');
             dispatch('started');
         } catch (err) {
             error = err.response.data.message || 'Something went wrong';
         }
+        loading.set(false);
     };
 </script>
 

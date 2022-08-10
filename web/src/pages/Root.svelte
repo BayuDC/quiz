@@ -1,19 +1,19 @@
 <script>
     import { onMount } from 'svelte';
     import axios from '../lib/axios';
+    import { loading } from '../lib/store';
 
     import Guard from '../components/Guard.svelte';
     import Quiz from '../components/Quiz.svelte';
     import QuizStart from '../components/QuizStart.svelte';
     import QuizFinish from '../components/QuizFinish.svelte';
 
-    let pending = true;
     let started = false;
     let finished = false;
     let question;
 
     const fetchQuiz = async () => {
-        pending = true;
+        loading.set(true);
         try {
             const { data } = await axios.get('/quiz');
             question = data.question;
@@ -25,7 +25,7 @@
                 finished = true;
             }
         }
-        pending = false;
+        loading.set(false);
     };
 
     onMount(fetchQuiz);
@@ -36,7 +36,7 @@
 </script>
 
 <Guard>
-    {#if !pending}
+    {#if !$loading}
         {#if started}
             <Quiz {question} on:next={fetchQuiz} />
         {:else if finished}

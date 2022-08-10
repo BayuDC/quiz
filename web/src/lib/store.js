@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import axios from './lib/axios';
+import axios from './axios';
 
 function createAuth() {
     const { subscribe, set } = writable({
@@ -27,3 +27,5 @@ function createAuth() {
 }
 
 export const auth = createAuth();
+
+export const loading = writable(false);

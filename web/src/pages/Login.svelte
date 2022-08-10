@@ -1,7 +1,7 @@
 <script>
     import { onDestroy } from 'svelte';
     import { navigate } from 'svelte-navigator';
-    import { auth } from '../store';
+    import { auth, loading } from '../lib/store';
     import axios from '../lib/axios';
 
     import LayoutCard from '../layouts/Card.svelte';
@@ -10,12 +10,11 @@
     import Alert from '../shared/Alert.svelte';
     import Button from '../shared/Button.svelte';
 
-    let loading = false;
     let error = '';
 
     const handleSubmit = async e => {
         try {
-            loading = true;
+            loading.set(true);
             await axios.post('/auth/login', {
                 username: e.target['txt-username'].value,
                 password: e.target['txt-password'].value,
@@ -26,7 +25,7 @@
         } catch (err) {
             error = err.response.data.message || 'Something went wrong';
         } finally {
-            loading = false;
+            loading.set(false);
         }
     };
 
@@ -37,7 +36,7 @@
     );
 </script>
 
-<LayoutCard {loading}>
+<LayoutCard>
     <form on:submit|preventDefault={handleSubmit} disabled>
         <Input label="Username" name="txt-username" required />
         <Input label="Password" name="txt-password" required type="password" />

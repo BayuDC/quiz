@@ -2,6 +2,7 @@
     import { navigate } from 'svelte-navigator';
 
     import axios from '../lib/axios';
+    import { loading } from '../lib/store';
     import quiz from '../data/quiz.json';
 
     import LayoutCard from '../layouts/Card.svelte';
@@ -11,6 +12,7 @@
     let error = '';
 
     const handleSubmit = async () => {
+        loading.set(true);
         try {
             await axios.post('/quiz/finish');
             navigate('/result');
@@ -18,6 +20,7 @@
             if (err.response.status == 410) return navigate('/result');
             error = err.response.data.message || 'Something went wrong';
         }
+        loading.set(false);
     };
 </script>
 
