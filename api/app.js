@@ -1,3 +1,4 @@
+const path = require('path');
 const Fastify = require('fastify');
 
 const port = process.env.APP_PORT || 8080;
@@ -22,9 +23,12 @@ fastify.register(require('./plugins/auth'));
 fastify.register(require('./plugins/error'));
 
 fastify.after(function () {
-    fastify.register(require('./routes/auth'));
-    fastify.register(require('./routes/main'));
-    fastify.register(require('./routes/quiz'));
+    fastify.register(require('./routes/auth'), { prefix: '/api' });
+    fastify.register(require('./routes/main'), { prefix: '/api' });
+    fastify.register(require('./routes/quiz'), { prefix: '/api' });
+    fastify.register(require('@fastify/static'), {
+        root: path.join(__dirname, 'public'),
+    });
 });
 
 fastify.listen({ port, host }, (err, addr) => {
