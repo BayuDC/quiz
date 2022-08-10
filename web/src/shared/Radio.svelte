@@ -42,6 +42,7 @@
                 align-self: start;
 
                 transition: 0.3s;
+                cursor: pointer;
             }
 
             margin-bottom: 20px;

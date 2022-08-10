@@ -25,22 +25,27 @@
 </script>
 
 <LayoutMain>
-    <h4>{question.body}</h4>
-    <form on:submit|preventDefault={handleSubmit}>
-        {#each question.choices as choice, i}
-            <Radio name="answer" id={String.fromCharCode(i + 65)} value={choice.id}>{choice.body}</Radio>
-        {/each}
-        <hr />
-        <Button>Next</Button>
-    </form>
+    <div class="quiz">
+        <h4>{question.body}</h4>
+        <form on:submit|preventDefault={handleSubmit}>
+            {#each question.choices as choice, i}
+                <Radio name="answer" id={String.fromCharCode(i + 65)} value={choice.id}>{choice.body}</Radio>
+            {/each}
+            <hr />
+            <Button>Next</Button>
+        </form>
+    </div>
 </LayoutMain>
 
 <style lang="scss">
-    form {
-        margin: 30px 0;
-        & :global(button) {
-            margin-top: 20px;
-            margin-left: auto;
+    .quiz {
+        padding: 10px 0;
+        form {
+            margin: 20px 0;
+            & :global(button) {
+                margin-top: 20px;
+                margin-left: auto;
+            }
         }
     }
 </style>

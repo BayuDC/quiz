@@ -1,4 +1,146 @@
 {
     "name": "Ulangan Teori Bab 69",
-    "count": 10
+    "count": 10,
+    "questions": [{
+        "body": "Gerakan suatu benda dimana setiap titik pada benda tersebut mempunyai jarak yang tetap terhadap suatu sumbu tertentu, merupakan pengertian dari ...",
+        "choices": [{
+            "body": "Gerak Translasi"
+        }, {
+            "body": "Gerak Rotasi",
+            "correct": true
+        }, {
+            "body": "Perpindahan"
+        }, {
+            "body": "Kelajuan"
+        }, {
+            "body": "Kecepatan"
+        }]
+    }, {
+        "body": "Program yang digunakan untuk pengelolah kata pada Microsft Windows bernama ...",
+        "choices": [{
+            "body": "Microsoft Excel"
+        }, {
+            "body": "Microsoft Word",
+            "correct": true
+        }, {
+            "body": "Microsft Powerpoint"
+        }]
+    }, {
+        "body": "Makhluk hidup dan benda tak hidup dibedakan dengan adanya ...",
+        "choices": [{
+            "body": "Bobot dan ukuran tertentu"
+        }, {
+            "body": "Ukuran masing-masing"
+        }, {
+            "body": "Gejala kehidupan",
+            "correct": true
+        }, {
+            "body": "Pemberian nama"
+        }]
+    }, {
+        "body": "Berikut ini yang BUKAN merupakan ciri-ciri umum yang ditemukan pada makhluk hidup adalah ...",
+        "choices": [{
+            "body": "berdiam diri",
+            "correct": true
+        }, {
+            "body": "tumbuh dan berkembang"
+        }, {
+            "body": "bernapas"
+        }, {
+            "body": "bergerak"
+        }]
+    }, {
+        "body": "Kotak ABCD dengan panjang sisi 3a cm serta 2a cm. Panjang dari diagonal AC ialah ...",
+        "choices": [{
+            "body": "17 cm"
+        }, {
+            "body": "√23a cm"
+        }, {
+            "body": "2a √10 cm"
+        }, {
+            "body": "13 cm",
+            "correct": true
+        }]
+    }],
+    "users": [{
+        "fullname": "Student1",
+        "username": "student1",
+        "password": "$2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K"
+    }, {
+        "fullname": "Student2",
+        "username": "student2",
+        "password": "$2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K"
+    }, {
+        "fullname": "Student3",
+        "username": "student3",
+        "password": "$2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K"
+    }, {
+        "fullname": "Student4",
+        "username": "student4",
+        "password": "$2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K"
+    }, {
+        "fullname": "Student5",
+        "username": "student5",
+        "password": "$2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K"
+    }, {
+        "fullname": "Student6",
+        "username": "student6",
+        "password": "$2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K"
+    }, {
+        "fullname": "Student7",
+        "username": "student7",
+        "password": "$2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K"
+    }, {
+        "fullname": "Student8",
+        "username": "student8",
+        "password": "$2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K"
+    }, {
+        "fullname": "Student9",
+        "username": "student9",
+        "password": "$2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K"
+    }, {
+        "fullname": "Student10",
+        "username": "student10",
+        "password": "$2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K"
+    }, {
+        "fullname": "Student11",
+        "username": "student11",
+        "password": "$2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K"
+    }, {
+        "fullname": "Student12",
+        "username": "student12",
+        "password": "$2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K"
+    }, {
+        "fullname": "Student13",
+        "username": "student13",
+        "password": "$2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K"
+    }, {
+        "fullname": "Student14",
+        "username": "student14",
+        "password": "$2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K"
+    }, {
+        "fullname": "Student15",
+        "username": "student15",
+        "password": "$2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K"
+    }, {
+        "fullname": "Student16",
+        "username": "student16",
+        "password": "$2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K"
+    }, {
+        "fullname": "Student17",
+        "username": "student17",
+        "password": "$2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K"
+    }, {
+        "fullname": "Student18",
+        "username": "student18",
+        "password": "$2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K"
+    }, {
+        "fullname": "Student19",
+        "username": "student19",
+        "password": "$2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K"
+    }, {
+        "fullname": "Student20",
+        "username": "student20",
+        "password": "$2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K"
+    }]
 }

@@ -7,4 +7,6 @@
     }
 </script>
 
-<slot />
+{#if $auth.user}
+    <slot />
+{/if}

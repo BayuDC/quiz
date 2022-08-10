@@ -24,8 +24,7 @@
 <Guard>
     <LayoutMain>
         <div class="page-result">
-            <h2>Quiz Result</h2>
-            <h4>{quiz.name}</h4>
+            <h2>{quiz.name}</h2>
             {#if result}
                 <ul>
                     <li class="score">
@@ -50,8 +49,8 @@
     @import '../styles/mixin';
 
     .page-result {
-        h2,
-        h4 {
+        padding: 10px 0;
+        h2 {
             margin-bottom: 10px;
         }
 
