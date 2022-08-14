@@ -1,11 +1,10 @@
 <script>
     import { createEventDispatcher } from 'svelte';
-    import LayoutMain from '../layouts/Main.svelte';
+    import { Form, Radio, Button, Alert } from 'spaper';
     import { loading } from '../lib/store';
     import axios from '../lib/axios';
 
-    import Radio from '../shared/Radio.svelte';
-    import Button from '../shared/Button.svelte';
+    import LayoutMain from '../layouts/MainClear.svelte';
 
     export let question;
 
@@ -26,26 +25,25 @@
 
 <LayoutMain>
     <div class="quiz">
-        <h4>{question.body}</h4>
-        <form on:submit|preventDefault={handleSubmit}>
-            {#each question.choices as choice, i}
-                <Radio name="answer" id={String.fromCharCode(i + 65)} value={choice.id}>{choice.body}</Radio>
-            {/each}
-            <hr />
-            <Button>Next</Button>
-        </form>
+        <Form class="margin-none" on:submit={handleSubmit}>
+            <legend class="padding-bottom">{question.body}</legend>
+            <fieldset class="form-group ">
+                {#each question.choices as choice}
+                    <Radio name="answer" value={choice.id} label={choice.body} required />
+                {/each}
+            </fieldset>
+            <div class="row flex-right margin-none">
+                <Button class="margin-none" outline="primary">Next</Button>
+            </div>
+        </Form>
     </div>
 </LayoutMain>
 
 <style lang="scss">
     .quiz {
-        padding: 10px 0;
-        form {
-            margin: 20px 0;
-            & :global(button) {
-                margin-top: 20px;
-                margin-left: auto;
-            }
+        legend {
+            font-size: 24px;
+            font-weight: 600;
         }
     }
 </style>

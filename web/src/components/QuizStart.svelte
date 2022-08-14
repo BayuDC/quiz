@@ -1,12 +1,11 @@
 <script>
     import { createEventDispatcher } from 'svelte';
+    import { Card, Button, Alert } from 'spaper';
+    import { loading } from '../lib/store';
     import axios from '../lib/axios';
-    import { loading, auth } from '../lib/store';
     import quiz from '../data/quiz.json';
 
     import LayoutMain from '../layouts/Main.svelte';
-    import Button from '../shared/Button.svelte';
-    import Alert from '../shared/Alert.svelte';
 
     let error = '';
 
@@ -24,35 +23,12 @@
 </script>
 
 <LayoutMain>
-    <div class="quiz-start">
-        <h2>Welcome, {$auth.user.fullname}</h2>
+    <Card title={quiz.name}>
         <form on:submit|preventDefault={handleSubmit}>
-            <h4>{quiz.name}</h4>
-            <Button>Start the Quiz</Button>
+            {#if error}
+                <Alert type="danger">{error}</Alert>
+            {/if}
+            <Button type="secondary" slot="bottom" size="large">Start the Quiz</Button>
         </form>
-
-        {#if error}
-            <Alert>{error}</Alert>
-        {/if}
-    </div>
+    </Card>
 </LayoutMain>
-
-<style lang="scss">
-    .quiz-start {
-        padding: 10px 0;
-        h2 {
-            margin-bottom: 20px;
-        }
-
-        form {
-            padding: 20px;
-            background: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-    }
-</style>

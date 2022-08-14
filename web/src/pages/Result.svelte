@@ -4,7 +4,7 @@
     import { loading } from '../lib/store';
     import axios from '../lib/axios';
     import quiz from '../data/quiz.json';
-    import LayoutMain from '../layouts/Main.svelte';
+    import LayoutMain from '../layouts/MainClear.svelte';
     import Guard from '../components/Guard.svelte';
 
     let result;
@@ -23,51 +23,49 @@
 
 <Guard>
     <LayoutMain>
-        <div class="page-result">
-            <h2>{quiz.name}</h2>
-            {#if result}
-                <ul>
-                    <li class="score">
-                        <p>Score</p>
-                        <span>{result.score}</span>
-                    </li>
-                    <li>
-                        <p>Total Questions</p>
-                        <span>{result.totalQuestion}</span>
-                    </li>
-                    <li>
-                        <p>Correct Answers</p>
-                        <span>{result.correctAnswer}</span>
-                    </li>
-                </ul>
-            {/if}
-        </div>
+        <h3 class="margin-bottom">{quiz.name}</h3>
+        {#if result}
+            <ul>
+                <li class="background-secondary score">
+                    <p>Score</p>
+                    <span>{result.score}</span>
+                </li>
+                <li class="background-success">
+                    <p>Total Questions</p>
+                    <span>{result.totalQuestion}</span>
+                </li>
+                <li class="background-warning">
+                    <p>Correct Answers</p>
+                    <span>{result.correctAnswer}</span>
+                </li>
+            </ul>
+        {/if}
     </LayoutMain>
 </Guard>
 
 <style lang="scss">
-    @import '../styles/mixin';
+    ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
 
-    .page-result {
-        padding: 10px 0;
-        h2 {
-            margin-bottom: 10px;
-        }
+        li {
+            padding: 20px;
+            p {
+                margin-bottom: 10px;
+            }
 
-        ul {
-            margin-top: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 10px;
+            span {
+                font-size: 50px;
+                font-weight: 700;
+            }
 
-            li {
-                padding: 20px;
-                background: #ffffff;
+            &::before {
+                display: none;
+            }
 
-                span {
-                    font-size: 50px;
-                    font-weight: 700;
-                }
+            &.score {
+                grid-column: 1 / 3;
             }
         }
     }

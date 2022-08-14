@@ -1,14 +1,11 @@
-<div class="layout-main">
-    <h1>TheQuiz</h1>
-    <hr />
-    <slot />
-</div>
+<script>
+    import { Button } from 'spaper';
+    import MainClear from './MainClear.svelte';
+    import { auth } from '../lib/store';
+</script>
 
-<style lang="scss">
-    .layout-main {
-        padding: 20px 0;
-        hr {
-            margin-bottom: 20px;
-        }
-    }
-</style>
+<MainClear>
+    <h4 class="margin-bottom">Welcome, <b>{$auth.user.fullname}</b>!</h4>
+    <slot />
+    <Button outline="danger" class="margin-top" size="small">Logout</Button>
+</MainClear>

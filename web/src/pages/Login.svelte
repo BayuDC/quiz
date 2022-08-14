@@ -1,14 +1,11 @@
 <script>
     import { onDestroy } from 'svelte';
     import { navigate } from 'svelte-navigator';
+    import { Form, Input, Button, Alert } from 'spaper';
     import { auth, loading } from '../lib/store';
     import axios from '../lib/axios';
 
     import LayoutCard from '../layouts/Card.svelte';
-
-    import Input from '../shared/Input.svelte';
-    import Alert from '../shared/Alert.svelte';
-    import Button from '../shared/Button.svelte';
 
     let error = '';
 
@@ -16,14 +13,14 @@
         try {
             loading.set(true);
             await axios.post('/auth/login', {
-                username: e.target['txt-username'].value,
-                password: e.target['txt-password'].value,
+                username: e.target['username'].value,
+                password: e.target['password'].value,
             });
 
             auth.load();
             navigate('/', { replace: true });
         } catch (err) {
-            error = err.response.data.message || 'Something went wrong';
+            error = err.response?.data?.message || 'Something went wrong';
         } finally {
             loading.set(false);
         }
@@ -37,12 +34,17 @@
 </script>
 
 <LayoutCard>
-    <form on:submit|preventDefault={handleSubmit} disabled>
-        <Input label="Username" name="txt-username" required />
-        <Input label="Password" name="txt-password" required type="password" />
+    <Form class="margin-bottom-none margin-top" on:submit={handleSubmit}>
+        <div class="margin-bottom">
+            <Input name="username" type="text" label="Username" block={true} required class="margin-bottom-small" />
+            <Input name="password" type="password" label="Password" block={true} required class="margin-bottom-small" />
+        </div>
         {#if error}
-            <Alert>{error}</Alert>
+            <Alert type="danger">{error}</Alert>
         {/if}
-        <Button>Login</Button>
-    </form>
+
+        <div class="row flex-right margin-none">
+            <Button class="col margin-bottom-none" type="secondary">Login</Button>
+        </div>
+    </Form>
 </LayoutCard>
