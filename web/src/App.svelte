@@ -3,6 +3,7 @@
     import Auth from './components/Auth.svelte';
 
     import Login from './pages/Login.svelte';
+    import Logout from './pages/Logout.svelte';
     import Result from './pages/Result.svelte';
     import Root from './pages/Root.svelte';
     import NotFound from './pages/404.svelte';
@@ -16,12 +17,16 @@
             <Route path="/" component={Root} />
             <Route path="/result" component={Result} />
             <Route path="/login" component={Login} />
+            <Route path="/logout" component={Logout} />
             <Route path="/*" component={NotFound} />
         </Router>
     </Auth>
 </main>
 
 <style lang="scss">
+    main {
+        min-height: 100vh;
+    }
     main.loading {
         position: relative;
 
