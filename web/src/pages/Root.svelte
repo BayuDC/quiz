@@ -36,13 +36,11 @@
 </script>
 
 <Guard>
-    {#if !$loading}
-        {#if started}
-            <Quiz {question} on:next={fetchQuiz} />
-        {:else if finished}
-            <QuizFinish />
-        {:else}
-            <QuizStart on:started={() => (started = true)} />
-        {/if}
+    {#if started}
+        <Quiz {question} on:next={fetchQuiz} />
+    {:else if finished}
+        <QuizFinish />
+    {:else}
+        <QuizStart on:started={() => (started = true)} />
     {/if}
 </Guard>
