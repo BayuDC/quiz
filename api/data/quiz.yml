@@ -30,21 +30,21 @@ questions:
 
 users:
   - fullname: Student 1
-    username: stundet1
-    password: $2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K
+    username: student1
+    password: student1
 
   - fullname: Student 2
-    username: stundet2
-    password: $2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K
+    username: student2
+    password: student2
 
   - fullname: Student 3
-    username: stundet3
-    password: $2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K
+    username: student3
+    password: student3
 
   - fullname: Student 4
-    username: stundet4
-    password: $2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K
+    username: student4
+    password: student4
 
   - fullname: Student 5
-    username: stundet5
-    password: $2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K
+    username: student5
+    password: student5
