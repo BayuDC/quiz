@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@fastify/auth': ^3.0.2
+  '@fastify/basic-auth': ^4.0.0
   '@fastify/cookie': ^7.3.1
   '@fastify/cors': ^8.1.0
   '@fastify/jwt': ^6.3.2
@@ -18,6 +19,7 @@ specifiers:
 
 dependencies:
   '@fastify/auth': 3.0.2
+  '@fastify/basic-auth': 4.0.0
   '@fastify/cookie': 7.3.1
   '@fastify/cors': 8.1.0
   '@fastify/jwt': 6.3.2
@@ -54,6 +56,14 @@ packages:
     dependencies:
       fastify-plugin: 3.0.1
       reusify: 1.0.4
+    dev: false
+
+  /@fastify/basic-auth/4.0.0:
+    resolution: {integrity: sha512-qx8n2BTutuCmzMw/7yQmvr1MOsCmasV/CljYg2CCBgAi4ljps627a6FpFX+xFj5wfjmYrvZQRcCMP5Oa67CJpA==}
+    dependencies:
+      basic-auth: 2.0.1
+      fastify-plugin: 3.0.1
+      http-errors: 2.0.0
     dev: false
 
   /@fastify/cookie/7.3.1:
@@ -224,6 +234,13 @@ packages:
 
   /balanced-match/1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
+    dev: false
+
+  /basic-auth/2.0.1:
+    resolution: {integrity: sha512-NF+epuEdnUYVlGuhaxbbq+dvJttwLnGY+YixlXlME5KpQ5W3CnXA5cVTneY3SPbPDRkcjMbifrwmFYcClgOZeg==}
+    engines: {node: '>= 0.8'}
+    dependencies:
+      safe-buffer: 5.1.2
     dev: false
 
   /bcryptjs/2.4.3:
@@ -716,6 +733,10 @@ packages:
 
   /rfdc/1.3.0:
     resolution: {integrity: sha512-V2hovdzFbOi77/WajaSMXk2OLm+xNIeQdMMuB7icj7bk6zi2F8GGAxigcnDFpJHbNyNcgyJDiP+8nOrY5cZGrA==}
+    dev: false
+
+  /safe-buffer/5.1.2:
+    resolution: {integrity: sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==}
     dev: false
 
   /safe-buffer/5.2.1:

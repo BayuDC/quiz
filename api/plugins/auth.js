@@ -33,5 +33,13 @@ module.exports = fp(function (fastify, options, done) {
             req.state.token = token;
         })
         .register(require('@fastify/auth'));
+
+    fastify.register(require('@fastify/basic-auth'), {
+        validate(username, password, req, reply, done) {
+            if (username == 'bayudc' && password == 'bay') return done();
+            reply.status(403).send();
+        },
+        authenticate: { realm: 'Westeros' },
+    });
     done();
 });

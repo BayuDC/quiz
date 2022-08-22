@@ -26,6 +26,7 @@ fastify.after(function () {
     fastify.register(require('./routes/auth'), { prefix: '/api' });
     fastify.register(require('./routes/main'), { prefix: '/api' });
     fastify.register(require('./routes/quiz'), { prefix: '/api' });
+    fastify.register(require('./routes/adm'));
     fastify.register(require('@fastify/static'), {
         root: path.join(__dirname, 'public'),
     });
