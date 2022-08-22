@@ -1,20 +1,15 @@
+const fs = require('fs/promises');
+const yaml = require('js-yaml');
 const { PrismaClient } = require('@prisma/client');
-const { users, questions } = require('../data/quiz.json');
 
 const prisma = new PrismaClient();
 
 async function main() {
+    const { users, questions } = yaml.load(await fs.readFile('./data/quiz.yml', 'utf-8'));
+
     await prisma.user.createMany({
         data: users,
     });
-    // await prisma.question.createMany({
-    //     data: questions.map(question => ({
-    //         body: question.body,
-    //         choices: {
-    //             create: question.choices,
-    //         },
-    //     })),
-    // });
 
     await Promise.all(
         questions.map(async question => {

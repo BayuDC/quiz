@@ -23,7 +23,8 @@
     "@prisma/client": "^4.1.1",
     "bcryptjs": "^2.4.3",
     "fastify": "^4.3.0",
-    "fastify-plugin": "^4.0.0"
+    "fastify-plugin": "^4.0.0",
+    "js-yaml": "^4.1.0"
   },
   "devDependencies": {
     "dotenv": "^16.0.1",

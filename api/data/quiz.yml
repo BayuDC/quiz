@@ -1,0 +1,50 @@
+questions:
+  - body: DBMS adalah singkatan dari
+    choices:
+      - body: Data Manipulation System
+      - body: Database Manipulation System
+      - body: Data Management System
+      - body: Database Management System
+        correct: true
+  - body: Dibawah ini adalah salah satu tujuan atau manfaat penggunaan DBMS, Kecuali
+    choices:
+      - body: Akses data lebih mudah dan cepat
+      - body: Dapat menangani data-data dalam jumlah besar
+      - body: Membuat pekerjaan menjadi kompleks
+        correct: true
+      - body: Menghilangkan hasil duplikasi maupun inkonsistensi data
+  - body: Berikut ini contoh DBMS, Kecuali
+    choices:
+      - body: MySQL
+      - body: PostgreSQL
+      - body: Oracle
+      - body: Excel
+        correct: true
+  - body: Kepanjangan dari SQL adalah
+    choices:
+      - body: Structured Question Language
+      - body: Strong Question Language
+      - body: Structured Query Language
+        correct: true
+      - body: Strong Query Language
+
+users:
+  - fullname: Student 1
+    username: stundet1
+    password: $2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K
+
+  - fullname: Student 2
+    username: stundet2
+    password: $2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K
+
+  - fullname: Student 3
+    username: stundet3
+    password: $2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K
+
+  - fullname: Student 4
+    username: stundet4
+    password: $2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K
+
+  - fullname: Student 5
+    username: stundet5
+    password: $2a$10$Tfk5CMyNSAIFv9UhW9bBuOs6qCCg7ZsS6i4UYH5TnnNlUCimryc9K
