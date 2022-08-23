@@ -17,7 +17,7 @@ model User {
   password String
 
   answers Answer[]
-  Score   Score?
+  score   Score?
 
   @@map("users")
 }
@@ -53,7 +53,7 @@ model Answer {
 
   user     User     @relation(fields: [userId], references: [id])
   question Question @relation(fields: [questionId], references: [id])
-  Choice   Choice   @relation(fields: [choiceId], references: [id])
+  choice   Choice   @relation(fields: [choiceId], references: [id])
 
   @@map("answers")
 }

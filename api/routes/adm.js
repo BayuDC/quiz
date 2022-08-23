@@ -9,7 +9,14 @@ module.exports = function (fastify, options, done) {
         onRequest: fastify.basicAuth,
         handler: async (_, reply) => {
             return reply.view('/views/dashboard.ejs', {
-                students: await prisma.user.findMany(),
+                students: await prisma.user.findMany({
+                    include: {
+                        answers: {
+                            orderBy: { questionId: 'asc' },
+                        },
+                        score: true,
+                    },
+                }),
                 questions: await prisma.question.findMany(),
             });
         },
