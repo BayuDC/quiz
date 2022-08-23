@@ -14,16 +14,16 @@
         <h2 class="margin-none">Quiz Monitor</h2>
     </div>
     <div class="paper container-lg margin-large">
-        <div style="overflow-x: scroll">
+        <div style="overflow-x: auto">
             <table>
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th style="width: 240px; display: block">Name</th>
+                        <th>Name</th>
                         <th>State</th>
-                        <% for( let i = 0; i < 60; i++ ) { %>
-                        <th><%= i + 1 %></th>
-                        <% } %>
+                        <% locals.questions.forEach(question => { %>
+                        <th><%= question.id %></th>
+                        <% }) %>
                         <th>Score</th>
                     </tr>
                 </thead>
@@ -31,7 +31,7 @@
                     <% locals.students.forEach((student, i) => { %>
                     <tr>
                         <td><%= ++i %></td>
-                        <td><%= student.fullname %> </td>
+                        <td style="white-space: nowrap;"><%= student.fullname %></td>
                         <td>None</td>
                     </tr>
                     <% }) %>
