@@ -21,8 +21,9 @@ module.exports = {
     },
     present(conn, req) {
         const { user } = req.state;
+        this.redis.set(`${user.username}:presence`, 1);
         conn.socket.on('close', () => {
-            console.log('close');
+            this.redis.del(`${user.username}:presence`);
         });
     },
 };
