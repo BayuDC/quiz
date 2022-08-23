@@ -10,8 +10,35 @@
 </head>
 
 <body>
+    <div class="paper container-lg margin-large ">
+        <h2 class="margin-none">Quiz Monitor</h2>
+    </div>
     <div class="paper container-lg margin-large">
-        <h1>Hello</h1>
+        <div style="overflow-x: scroll">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th style="width: 240px; display: block">Name</th>
+                        <th>State</th>
+                        <% for( let i = 0; i < 60; i++ ) { %>
+                        <th><%= i + 1 %></th>
+                        <% } %>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% locals.students.forEach((student, i) => { %>
+                    <tr>
+                        <td><%= ++i %></td>
+                        <td><%= student.fullname %> </td>
+                        <td>None</td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+
     </div>
 </body>
 
