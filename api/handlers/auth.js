@@ -19,4 +19,10 @@ module.exports = {
             message: 'Logout success',
         });
     },
+    present(conn, req) {
+        const { user } = req.state;
+        conn.socket.on('close', () => {
+            console.log('close');
+        });
+    },
 };

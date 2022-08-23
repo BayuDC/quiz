@@ -20,6 +20,7 @@ fastify.register(require('@fastify/cookie'));
 fastify.register(require('@fastify/sensible'));
 fastify.register(require('@fastify/jwt'), { secret });
 fastify.register(require('@fastify/redis'), { url: redisUrl });
+fastify.register(require('@fastify/websocket'));
 
 fastify.register(require('./plugins/state'));
 fastify.register(require('./plugins/auth'));

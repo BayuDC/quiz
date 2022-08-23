@@ -22,6 +22,11 @@ module.exports = function (fastify, options, done) {
         preHandler: fastify.auth([fastify.verifyJWT]),
         handler: handler.logout,
     });
+    fastify.get('/auth/present', {
+        websocket: true,
+        preHandler: fastify.auth([fastify.verifyJWT]),
+        handler: handler.present,
+    });
 
     done();
 };

@@ -10,6 +10,7 @@ specifiers:
   '@fastify/sensible': ^5.1.0
   '@fastify/static': ^6.5.0
   '@fastify/view': ^7.1.0
+  '@fastify/websocket': ^7.0.0
   '@prisma/client': ^4.1.1
   bcryptjs: ^2.4.3
   dotenv: ^16.0.1
@@ -29,6 +30,7 @@ dependencies:
   '@fastify/sensible': 5.1.0
   '@fastify/static': 6.5.0
   '@fastify/view': 7.1.0
+  '@fastify/websocket': 7.0.0
   '@prisma/client': 4.1.1_prisma@4.1.1
   bcryptjs: 2.4.3
   ejs: 3.1.8
@@ -149,6 +151,16 @@ packages:
     dependencies:
       fastify-plugin: 4.0.0
       hashlru: 2.3.0
+    dev: false
+
+  /@fastify/websocket/7.0.0:
+    resolution: {integrity: sha512-GmmbRSYy4379eXYd9VNBYU8NxlgkftX07fR9tRDURYDs2tDYNBXkVOlwNcxSVXodWhJhPrYkyrrAQzOSWFYW/A==}
+    dependencies:
+      fastify-plugin: 4.0.0
+      ws: 8.8.1
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
     dev: false
 
   /@ioredis/commands/1.2.0:
@@ -965,6 +977,19 @@ packages:
 
   /wrappy/1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
+    dev: false
+
+  /ws/8.8.1:
+    resolution: {integrity: sha512-bGy2JzvzkPowEJV++hF07hAD6niYSr0JzBNo/J29WsB57A2r7Wlc1UFcTR9IzrPvuNVO4B8LGqF8qcpsVOhJCA==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: ^5.0.2
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
     dev: false
 
   /xtend/4.0.2:
