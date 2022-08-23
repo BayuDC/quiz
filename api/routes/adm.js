@@ -6,8 +6,8 @@
 module.exports = function (fastify, options, done) {
     fastify.get('/adm', {
         onRequest: fastify.basicAuth,
-        handler: () => {
-            return 'Admin dashboard';
+        handler: async (_, reply) => {
+            return reply.view('/views/dashboard.ejs');
         },
     });
 

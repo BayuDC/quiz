@@ -13,6 +13,9 @@ fastify.register(require('@fastify/cors'), {
     origin,
     credentials: true,
 });
+fastify.register(require('@fastify/view'), {
+    engine: { ejs: require('ejs') },
+});
 fastify.register(require('@fastify/cookie'));
 fastify.register(require('@fastify/sensible'));
 fastify.register(require('@fastify/jwt'), { secret });
