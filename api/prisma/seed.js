@@ -7,32 +7,25 @@ const prisma = new PrismaClient();
 
 async function main() {
     const { users, questions } = yaml.load(await fs.readFile('./data/quiz.yml', 'utf-8'));
-
-    await Promise.all(
-        users.map(async user => {
-            console.log(user);
-            await prisma.user.create({
-                data: {
-                    fullname: user.fullname,
-                    username: user.username,
-                    password: await bcrypt.hash(user.password, await bcrypt.genSalt()),
+    for (let user of users) {
+        await prisma.user.create({
+            data: {
+                fullname: user.fullname,
+                username: user.username,
+                password: await bcrypt.hash(user.password, await bcrypt.genSalt()),
+            },
+        });
+    }
+    for (let question of questions) {
+        await prisma.question.create({
+            data: {
+                body: question.body,
+                choices: {
+                    create: question.choices,
                 },
-            });
-        })
-    );
-
-    await Promise.all(
-        questions.map(async question => {
-            await prisma.question.create({
-                data: {
-                    body: question.body,
-                    choices: {
-                        create: question.choices,
-                    },
-                },
-            });
-        })
-    );
+            },
+        });
+    }
 }
 
 main()
