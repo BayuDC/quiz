@@ -32,7 +32,15 @@
                     <tr>
                         <td><%= ++i %></td>
                         <td style="white-space: nowrap;"><%= student.fullname %></td>
-                        <td>None</td>
+                        <td>
+                            <% switch(student.status){ case 'Working': %>
+                            <span class="badge secondary"><%= student.status %></span>
+                            <% break; case 'Online': %>
+                            <span class="badge success"><%= student.status %></span>
+                            <% break; case 'Offline': %>
+                            <span class="badge"><%= student.status %></span>
+                            <% break; } %>
+                        </td>
                         <td><%= student.score?.value %> </td>
                         <% student.answers.forEach(answer => { %>
                         <td><%= answer.correct ? '🟢' : '🔴' %> </td>
