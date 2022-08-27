@@ -36,7 +36,8 @@ module.exports = fp(function (fastify, options, done) {
 
     fastify.register(require('@fastify/basic-auth'), {
         validate(username, password, req, reply, done) {
-            if (username == 'bayudc' && password == 'bay') return done();
+            if (username == (process.env.ADM_USERNAME || 'admin') && password == (process.env.ADM_PASSWORD || 'admin'))
+                return done();
             reply.status(403).send();
         },
         authenticate: { realm: 'Westeros' },
