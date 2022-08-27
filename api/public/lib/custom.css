@@ -1,0 +1,16 @@
+/* neucha-regular - latin_cyrillic */
+@font-face {
+    font-family: 'Neucha';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''), url('/lib/fonts/neucha-v17-latin_cyrillic-regular.woff2') format('woff2'),
+        url('/lib/fonts/neucha-v17-latin_cyrillic-regular.woff') format('woff');
+}
+/* patrick-hand-sc-regular - vietnamese_latin-ext_latin */
+@font-face {
+    font-family: 'Patrick Hand SC';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''), url('/lib/fonts/patrick-hand-sc-v13-vietnamese_latin-ext_latin-regular.woff2') format('woff2'),
+        url('/lib/fonts/patrick-hand-sc-v13-vietnamese_latin-ext_latin-regular.woff') format('woff');
+}
