@@ -1,20 +1,20 @@
 FROM node:16
 
+WORKDIR /app
+
+COPY ./api/package.json ./api/package.json
+COPY ./web/package.json ./web/package.json
+
+RUN npm install --prefix ./api
+RUN npm install --prefix ./web
+
 WORKDIR /app/web
-
-COPY ./web/package.json .
-
-RUN npm install 
 
 COPY ./web ./
 
 RUN npm run build
 
 WORKDIR /app/api
-
-COPY ./api/package.json .
-
-RUN npm install
 
 COPY ./api ./
 
