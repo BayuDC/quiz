@@ -6,7 +6,9 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function main() {
-    const { users, questions } = yaml.load(await fs.readFile('./data/quiz.yml', 'utf-8'));
+    const { questions } = yaml.load(await fs.readFile('./data/quiz.yml', 'utf-8'));
+    const { users } = yaml.load(await fs.readFile('./data/users.yml', 'utf-8'));
+
     for (let user of users) {
         await prisma.user.create({
             data: {
