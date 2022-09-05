@@ -146,7 +146,7 @@ module.exports = {
                 },
             });
         }
-        const score = (correct / questionCount) * 100;
+        const score = (correct * 100) / questionCount;
         await prisma.score.create({
             data: { userId, value: score },
         });
