@@ -5,9 +5,12 @@ const handler = require('../handlers/adm');
  * @param {import('fastify').FastifyPluginCallback} done
  */
 module.exports = function (fastify, options, done) {
+    fastify.addHook('onRequest', fastify.basicAuth);
     fastify.get('/adm', {
-        onRequest: fastify.basicAuth,
         handler: handler.pretty,
+    });
+    fastify.get('/adm/raw', {
+        handler: handler.raw,
     });
 
     done();

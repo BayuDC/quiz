@@ -37,4 +37,8 @@ module.exports = {
         const data = await getEverything(this);
         return reply.view('views/dashboard.ejs', data);
     },
+    async raw(_, reply) {
+        const data = await getEverything(this);
+        return reply.send(data);
+    },
 };
