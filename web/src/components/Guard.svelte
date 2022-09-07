@@ -1,5 +1,5 @@
 <script>
-    import { onMount } from 'svelte';
+    import { onMount, onDestroy } from 'svelte';
 
     import { navigate } from 'svelte-navigator';
     import { auth } from '../lib/store';
@@ -9,8 +9,13 @@
         if (!$auth.user) navigate('/login');
     }
 
+    let socket;
+
     onMount(() => {
-        useWs();
+        socket = useWs();
+    });
+    onDestroy(() => {
+        socket?.close();
     });
 </script>
 
