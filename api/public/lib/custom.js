@@ -2,11 +2,14 @@ const btnRefresh = document.getElementById('btn-refresh');
 const theTable = document.getElementById('the-table');
 const [, ...tblRows] = theTable.rows;
 
+let pending = false;
+
 btnRefresh.addEventListener('click', async () => {
+    if (pending) return;
+
+    pending = true;
     const res = await fetch('/adm/raw');
     const data = await res.json();
-
-    console.log(data.students);
 
     data.students.forEach((student, i) => {
         const cellState = tblRows[i].children[2];
@@ -38,4 +41,9 @@ btnRefresh.addEventListener('click', async () => {
             });
         }
     });
+    pending = false;
 });
+
+setInterval(() => {
+    btnRefresh.click();
+}, 1000);
