@@ -7,49 +7,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/lib/paper.min.css">
     <link rel="stylesheet" href="/lib/custom.css">
+    <script defer src="/lib/custom.js"></script>
     <title>Quiz Dashboard</title>
 </head>
 
 <body>
-    <div class="paper container-lg margin-large ">
-        <h2 class="margin-none">Quiz Monitor</h2>
-    </div>
-    <div class="paper container-lg margin-large">
-        <div style="overflow-x: auto">
-            <table>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>State</th>
-                        <th>Score</th>
-                        <% locals.questions.forEach(question => { %>
-                        <th><%= question.id %></th>
+    <div class="padding-large">
+        <div class="paper container-lg flex-middle row">
+            <h2 class="margin-none col" style="margin-right: auto">Quiz Monitor</h2>
+            <button id="btn-refresh" type="button" class="btn-secondary-outline col">
+                Refresh
+            </button>
+        </div>
+        <div class="paper container-lg">
+            <div style=" overflow-x: auto">
+                <table id="the-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>State</th>
+                            <th>Score</th>
+                            <% locals.questions.forEach(question => { %>
+                            <th><%= question.id %></th>
+                            <% }) %>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% locals.students.forEach((student, i) => { %>
+                        <tr>
+                            <td><%= ++i %></td>
+                            <td style="white-space: nowrap;"><%= student.fullname %></td>
+                            <td>
+                                <% switch(student.status){ case 'Working': %>
+                                <span class="badge secondary"><%= student.status %></span>
+                                <% break; case 'Online': %>
+                                <span class="badge success"><%= student.status %></span>
+                                <% break; case 'Offline': %>
+                                <span class="badge"><%= student.status %></span>
+                                <% break; } %>
+                            </td>
+                            <td><%= student.score?.value %></td>
+                            <% student.answers.forEach(answer => { %>
+                            <td><%= answer.correct ? '🟢' : '🔴' %> </td>
+                            <% }) %>
+                        </tr>
                         <% }) %>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% locals.students.forEach((student, i) => { %>
-                    <tr>
-                        <td><%= ++i %></td>
-                        <td style="white-space: nowrap;"><%= student.fullname %></td>
-                        <td>
-                            <% switch(student.status){ case 'Working': %>
-                            <span class="badge secondary"><%= student.status %></span>
-                            <% break; case 'Online': %>
-                            <span class="badge success"><%= student.status %></span>
-                            <% break; case 'Offline': %>
-                            <span class="badge"><%= student.status %></span>
-                            <% break; } %>
-                        </td>
-                        <td><%= student.score?.value %> </td>
-                        <% student.answers.forEach(answer => { %>
-                        <td><%= answer.correct ? '🟢' : '🔴' %> </td>
-                        <% }) %>
-                    </tr>
-                    <% }) %>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
     </div>
