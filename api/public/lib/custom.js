@@ -26,6 +26,16 @@ btnRefresh.addEventListener('click', async () => {
         }
 
         cellState.replaceChildren(elState);
-        cellScore.textContent = student.score?.value;
+        if (!cellScore.textContent) {
+            cellScore.textContent = student.score?.value;
+        }
+
+        if (!tblRows[i].children[4]) {
+            student.answers.forEach(answer => {
+                const cellAnswer = document.createElement('td');
+                cellAnswer.textContent = answer.correct ? '🟢' : '🔴';
+                tblRows[i].append(cellAnswer);
+            });
+        }
     });
 });
