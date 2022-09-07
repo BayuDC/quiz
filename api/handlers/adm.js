@@ -39,6 +39,8 @@ module.exports = {
     },
     async raw(_, reply) {
         const data = await getEverything(this);
-        return reply.send(data);
+        return reply.send({
+            students: data.students,
+        });
     },
 };

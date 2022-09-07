@@ -10,6 +10,7 @@ btnRefresh.addEventListener('click', async () => {
 
     data.students.forEach((student, i) => {
         const cellState = tblRows[i].children[2];
+        const cellScore = tblRows[i].children[3];
 
         const elState = document.createElement('span');
         elState.classList.add('badge');
@@ -25,5 +26,6 @@ btnRefresh.addEventListener('click', async () => {
         }
 
         cellState.replaceChildren(elState);
+        cellScore.textContent = student.score?.value;
     });
 });
