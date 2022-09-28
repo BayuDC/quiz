@@ -25,6 +25,7 @@ fastify.register(require('@fastify/websocket'));
 fastify.register(require('./plugins/state'));
 fastify.register(require('./plugins/auth'));
 fastify.register(require('./plugins/error'));
+fastify.register(require('./plugins/data'));
 
 fastify.after(function () {
     fastify.register(require('./routes/auth'), { prefix: '/api' });

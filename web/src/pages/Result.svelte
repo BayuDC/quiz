@@ -3,11 +3,11 @@
     import { navigate } from 'svelte-navigator';
     import { loading } from '../lib/store';
     import axios from '../lib/axios';
-    import quiz from '../data/quiz.json';
     import LayoutMain from '../layouts/MainClear.svelte';
     import Guard from '../components/Guard.svelte';
 
     let result;
+    let quizName = '';
 
     onMount(async () => {
         loading.set(true);
@@ -19,11 +19,17 @@
         }
         loading.set(false);
     });
+
+    onMount(async () => {
+        const res = await axios.get('/quiz/data');
+
+        quizName = res.data.name;
+    });
 </script>
 
 <Guard>
     <LayoutMain>
-        <h3 class="margin-bottom">{quiz.name}</h3>
+        <h3 class="margin-bottom">{quizName}</h3>
         {#if result}
             <ul>
                 <li class="background-secondary score">

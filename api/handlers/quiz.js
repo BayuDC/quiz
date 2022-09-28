@@ -179,4 +179,11 @@ module.exports = {
             correctAnswer,
         });
     },
+    /**
+     * @param {import('fastify').FastifyRequest} req
+     * @param {import('fastify').FastifyReply} reply
+     */
+    async data(req, reply) {
+        reply.send(this.data);
+    },
 };
