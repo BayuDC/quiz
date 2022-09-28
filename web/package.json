@@ -12,6 +12,7 @@
     "papercss": "^1.8.3",
     "spaper": "^0.9.6",
     "svelte": "^3.49.0",
+    "svelte-markdown": "^0.2.3",
     "svelte-navigator": "^3.1.6"
   },
   "devDependencies": {

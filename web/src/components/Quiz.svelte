@@ -1,6 +1,7 @@
 <script>
     import { createEventDispatcher } from 'svelte';
     import { Form, Radio, Button, Skeleton } from 'spaper';
+    import SvelteMarkdown from 'svelte-markdown';
     import { loading } from '../lib/store';
     import axios from '../lib/axios';
 
@@ -38,10 +39,14 @@
                     <Skeleton --height="3rem" --width="4rem" />
                 </div>
             {:else}
-                <legend class="padding-bottom">{question.body}</legend>
+                <legend class="padding-bottom">
+                    <SvelteMarkdown source={question.body} />
+                </legend>
                 <fieldset class="form-group ">
                     {#each question.choices as choice}
-                        <Radio name="answer" value={choice.id} label={choice.body} required />
+                        <Radio name="answer" value={choice.id} required>
+                            {@html choice.body}
+                        </Radio>
                     {/each}
                 </fieldset>
                 <div class="row flex-right margin-none">
@@ -57,6 +62,18 @@
         legend {
             font-size: 24px;
             font-weight: 600;
+
+            & > :global(*) {
+                margin-bottom: 20px;
+            }
+            & > :global(*):last-child {
+                margin-bottom: 0;
+            }
+        }
+        fieldset {
+            & :global(span) {
+                display: flex;
+            }
         }
     }
 </style>
